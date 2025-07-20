@@ -4,18 +4,18 @@ import Link from "next/link";
 import FAQListItem from "@/components/FAQListItems";
 import Image from "next/image";
 import productDemo from "@/public/productDemo.png";
+import { auth } from "@/auth";
 
-export default function Home() {
-  const isLoggedIn = true;
-  const name = "John";
+export default async function Home() {
   const pricingFeatureList = [
     "Collect customerfeedback",
     "Unlimited boards",
     "Admin dashboard",
     "24/7 support",
   ];
-  const age = 19;
-  let canVote;
+
+  const session = await auth();
+  console.log(session);
 
   return (
     <main>
@@ -33,7 +33,7 @@ export default function Home() {
           </div>
 
           <div className="">
-            <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+            <ButtonLogin session={session} />
           </div>
         </div>
       </section>
@@ -54,7 +54,7 @@ export default function Home() {
             products your customers will love.
           </div>
 
-          <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+          <ButtonLogin session={session} />
         </div>
       </section>
 
@@ -82,11 +82,7 @@ export default function Home() {
               ))}
             </ul>
 
-            <ButtonLogin
-              isLoggedIn={isLoggedIn}
-              name={name}
-              extraStyle="w-full"
-            />
+            <ButtonLogin session={session} extraStyle="w-full" />
           </div>
         </div>
       </section>
