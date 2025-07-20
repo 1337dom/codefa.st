@@ -1,9 +1,19 @@
 import ButtonLogin from "@/components/ButtonLogin";
+import ListItems from "@/components/ListItems";
 import Link from "next/link";
+import FAQListItem from "@/components/FAQListItems";
 
 export default function Home() {
   const isLoggedIn = true;
   const name = "John";
+  const pricingFeatureList = [
+    "Collect customerfeedback",
+    "Unlimited boards",
+    "Admin dashboard",
+    "24/7 support",
+  ];
+  const age = 19;
+  let canVote;
 
   return (
     <main>
@@ -12,10 +22,10 @@ export default function Home() {
         <div className="max-w-3xl mx-auto flex justify-between items-center px-8 py-2">
           <div className="font-bold">CodeFastSaaS</div>
           <div className="space-x-8 max-md:hidden">
-            <Link className="link link-hover" href="/pricing">
+            <Link className="link link-hover" href="#pricing">
               Pricing
             </Link>
-            <Link className="link link-hover" href="/faq">
+            <Link className="link link-hover" href="#faq">
               FAQ
             </Link>
           </div>
@@ -40,7 +50,7 @@ export default function Home() {
       </section>
 
       {/* PRICING */}
-      <section className="bg-base-200">
+      <section className="bg-base-200" id="pricing">
         <div className="py-32 px-8 max-w-3xl mx-auto">
           <p className="text-sm uppercase font-medium text-center text-primary mb-4">
             Pricing
@@ -58,70 +68,39 @@ export default function Home() {
               </div>
             </div>
             <ul className="space-y-2">
-              <li className="flex gap-2 items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className=" text-green-600 size-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Collect customerfeedback
-              </li>
-              <li className="flex gap-2 items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className=" text-green-600 size-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Unlimited boards
-              </li>
-              <li className="flex gap-2 items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className=" text-green-600 size-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                Admin dashboard
-              </li>
-              <li className="flex gap-2 items-center">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  className=" text-green-600 size-5"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.704 4.153a.75.75 0 0 1 .143 1.052l-8 10.5a.75.75 0 0 1-1.127.075l-4.5-4.5a.75.75 0 0 1 1.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 0 1 1.05-.143Z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                24/7 support
-              </li>
+              {pricingFeatureList.map((feature) => (
+                <ListItems key={feature}>{feature}</ListItems>
+              ))}
             </ul>
 
-            <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+            <ButtonLogin
+              isLoggedIn={isLoggedIn}
+              name={name}
+              extraStyle="w-full"
+            />
           </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-base-200" id="faq">
+        <div className="py-32 px-8 max-w-3xl mx-auto">
+          <p className="text-sm uppercase font-medium text-center text-primary mb-4">
+            FAQ
+          </p>
+          <h2 className="text-3xl lg:text-4xl font-extrabold mb-12 text-center">
+            Frequently Asked Questions
+          </h2>
+
+          <ul className="max-w-lg mx-auto">
+            {[
+              { question: "What do I get exactly?", answer: "Lorem Ipsum" },
+              { question: "Can I get a refund?", answer: "Lorem Ipsum" },
+              { question: "I have another question", answer: "Lorem Ipsum" },
+            ].map((qa) => (
+              <FAQListItem key={qa.question} qa={qa} />
+            ))}
+          </ul>
         </div>
       </section>
     </main>

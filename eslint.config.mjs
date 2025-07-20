@@ -1,14 +1,22 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+// Importiert die ESLint-Standardregeln ("eslint:recommended")
+import js from "@eslint/js";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Importiert das Next.js-Plugin, welches "next/core-web-vitals" enthält
+import nextPlugin from "eslint-config-next";
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+// Typisierung für die Konfiguration (optional, aber gute Praxis)
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+  // Aktiviert die empfohlenen ESLint-Regeln
+  js.configs.recommended,
 
-const eslintConfig = [...compat.extends("next/core-web-vitals")];
+  // Aktiviert die Regeln von Next.js
+  nextPlugin,
 
-export default eslintConfig;
+  // Hier könntest du später deine eigenen, spezifischen Regeln hinzufügen
+  // {
+  //   rules: {
+  //     "deine-regel": "error"
+  //   }
+  // }
+];
