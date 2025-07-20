@@ -2,6 +2,8 @@ import ButtonLogin from "@/components/ButtonLogin";
 import ListItems from "@/components/ListItems";
 import Link from "next/link";
 import FAQListItem from "@/components/FAQListItems";
+import Image from "next/image";
+import productDemo from "@/public/productDemo.png";
 
 export default function Home() {
   const isLoggedIn = true;
@@ -19,7 +21,7 @@ export default function Home() {
     <main>
       {/* HEADER */}
       <section className="bg-base-200">
-        <div className="max-w-3xl mx-auto flex justify-between items-center px-8 py-2">
+        <div className="max-w-5xl mx-auto flex justify-between items-center px-8 py-2">
           <div className="font-bold">CodeFastSaaS</div>
           <div className="space-x-8 max-md:hidden">
             <Link className="link link-hover" href="#pricing">
@@ -37,16 +39,23 @@ export default function Home() {
       </section>
 
       {/* HERO */}
-      <section className="text-center px-8 py-32 max-w-3xl mx-auto">
-        <h1 className="text-4xl font-extrabold mb-6 lg:text-5xl">
-          Collect customer feedback to build a better product
-        </h1>
-        <div className="opacity-90 mb-10">
-          Create a feedback board in minutes, prioritize features, and build
-          products your customers will love.
-        </div>
+      <section className="text-center lg:text-left px-8 py-32 max-w-5xl mx-auto flex flex-col lg:flex-row gap-14 items-center lg:items-start">
+        <Image
+          src={productDemo}
+          alt="Product Demo"
+          className="w-96 object-cover"
+        />
+        <div>
+          <h1 className="text-4xl font-extrabold mb-6 lg:text-5xl">
+            Collect customer feedback to build a better product
+          </h1>
+          <div className="opacity-90 mb-10">
+            Create a feedback board in minutes, prioritize features, and build
+            products your customers will love.
+          </div>
 
-        <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+          <ButtonLogin isLoggedIn={isLoggedIn} name={name} />
+        </div>
       </section>
 
       {/* PRICING */}
