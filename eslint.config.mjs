@@ -13,10 +13,10 @@ export default [
   // Aktiviert die Regeln von Next.js
   nextPlugin,
 
-  // Hier könntest du später deine eigenen, spezifischen Regeln hinzufügen
-  // {
-  //   rules: {
-  //     "deine-regel": "error"
-  //   }
-  // }
+  // Own Rules
+  {
+    rules: {
+      "no-unused-vars": "warn",
+    },
+  },
 ];

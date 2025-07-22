@@ -2,8 +2,11 @@
 
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const FormNewBoard = () => {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -14,13 +17,18 @@ const FormNewBoard = () => {
 
     try {
       const data = await axios.post("/api/board", { name });
-      console.log(data);
 
       setName("");
 
-      // 2. Redirect to dedicated board page
+      toast.success("Board created successfully");
+
+      router.refresh();
     } catch (error) {
-      // 1. Display error message
+      const errorMessage =
+        error.response?.data?.error ||
+        error.message ||
+        "Failed to create Board";
+      toast.error(errorMessage);
     } finally {
       setIsLoading(false);
     }
